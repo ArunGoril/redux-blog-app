@@ -5,7 +5,7 @@ import PostList from '../components/PostList'
 const Posts = () => {
   return (
     <div className='container'>
-        <h2 className='my-3'>Welcome to my Blog App</h2>
+        <h2 className='my-3 text-secondary'>Welcome to my Blog App</h2>
         <div className='row'>
             <div className='col-md-4 col-12'>
                 <PostForm />

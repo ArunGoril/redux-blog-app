@@ -1,12 +1,30 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { createPost } from '../redux/services/postService'
 
 const PostForm = () => {
     const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
+    const [body, setBody] = useState("")
+
+    const dispatch = useDispatch()
+    const posts = useSelector(state => state.posts)
 
     const addPostHandler = (e) => {
         e.preventDefault()
-        console.log(title, description)
+        // console.log(title, body)
+        const formData = {
+            title,
+            body
+        }
+        dispatch(createPost(formData))
+        setTitle("")
+        setBody("")
+    }
+
+    if (posts.isError) {
+        return (
+            <div className='text-danger'>Sorry we are unable to add this post at this time. Please try agin after some time</div>
+        )
     }
 
     return (
@@ -17,7 +35,7 @@ const PostForm = () => {
                     <input type="text" className="form-control" placeholder="Enter Post Title" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <div className="form-group my-3">
-                   <textarea rows="5" className="form-control" placeholder="Enter Post Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                   <textarea rows="5" className="form-control" placeholder="Enter Post Description" value={body} onChange={(e) => setBody(e.target.value)}></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary my-3">Submit</button>
             </form>

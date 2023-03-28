@@ -12,6 +12,7 @@ const postReducer = (state = initialState, action) => {
 
     switch (type) {
         case actionTypes.GET_POSTS_LOADING:
+        case actionTypes.ADD_POST_LOADING:
             return {
                 ...state,
                 isLoading: true
@@ -28,8 +29,24 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: true,
-                postList: []
+                // postList: []
             }
+
+        case actionTypes.ADD_POST_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+                postList: [...state.postList, payload]
+            }
+
+        case actionTypes.ADD_POST_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                isError: true
+            }
+
         default:
             return state
     }
