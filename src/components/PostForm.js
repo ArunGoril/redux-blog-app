@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import swal from 'sweetalert';
 import { createPost } from '../redux/services/postService'
 
 const PostForm = () => {
@@ -19,6 +20,8 @@ const PostForm = () => {
         dispatch(createPost(formData))
         setTitle("")
         setBody("")
+        swal("Good job!", "Post created successfully", "success")
+
     }
 
     if (posts.isError) {
