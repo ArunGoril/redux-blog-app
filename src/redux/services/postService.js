@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "../actions/types";
 
-const POST_API_URL = "https://jsonplaceholder.typicode.com/posts";
+const POST_API_URL = "https://odd-gray-dragonfly-fez.cyclic.app/posts";
 
 
 export const getPosts = () => {
@@ -101,7 +101,7 @@ export const deletePost = (postId) => {
             const data = await res.data
             dispatch({
                 type: actionTypes.DELETE_POST_SUCCESS,
-                payload: {id: postId}
+                payload: data
             })
         } catch(err) {
             dispatch({

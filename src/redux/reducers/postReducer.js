@@ -47,7 +47,7 @@ const postReducer = (state = initialState, action) => {
             }
 
         case actionTypes.EDIT_POST_SUCCESS:
-            const index = state.postList.findIndex(post => post.id === payload.id)
+            const index = state.postList.findIndex(post => post._id === payload._id)
             const newPostList = state.postList
             newPostList.splice(index, 1, payload)
             return {
